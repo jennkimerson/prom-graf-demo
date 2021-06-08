@@ -1,0 +1,50 @@
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    annotations:
+      volume.beta.kubernetes.io/storage-provisioner: infinibox-csi-driver
+    finalizers:
+    - kubernetes.io/pvc-protection
+    name: grafana
+    namespace: ceph-build-metrics
+  spec:
+    accessModes:
+    - ReadWriteMany
+    resources:
+      requests:
+        storage: 1Gi
+    storageClassName: dynamic-nfs
+    volumeMode: Filesystem
+  status:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 1Gi
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    annotations:
+      volume.beta.kubernetes.io/storage-provisioner: infinibox-csi-driver
+    finalizers:
+    - kubernetes.io/pvc-protection
+    name: prometheus
+    namespace: ceph-build-metrics
+  spec:
+    accessModes:
+    - ReadWriteMany
+    resources:
+      requests:
+        storage: 5Gi
+    storageClassName: dynamic-nfs
+    volumeMode: Filesystem
+  status:
+    accessModes:
+    - ReadWriteMany
+    capacity:
+      storage: 5Gi

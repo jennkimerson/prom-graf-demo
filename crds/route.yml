@@ -1,0 +1,46 @@
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
+apiVersion: v1
+items:
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    labels:
+      app: grafana
+      app.kubernetes.io/component: grafana
+      app.kubernetes.io/instance: grafana
+      app.kubernetes.io/part-of: ceph-build-metrics
+      app.openshift.io/runtime-version: latest
+    name: grafana
+    namespace: ceph-build-metrics
+  spec:
+    host: grafana-ceph-build-metrics.apps.ocp4.prod.psi.redhat.com
+    port:
+      targetPort: 3000-tcp
+    to:
+      kind: Service
+      name: grafana
+      weight: 100
+    wildcardPolicy: None
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    labels:
+      app: prometheus
+      app.kubernetes.io/component: prometheus
+      app.kubernetes.io/instance: prometheus
+      app.kubernetes.io/part-of: ceph-build-metrics
+      app.openshift.io/runtime-version: latest
+    name: prometheus
+    namespace: ceph-build-metrics
+  spec:
+    host: prometheus-ceph-build-metrics.apps.ocp4.prod.psi.redhat.com
+    port:
+      targetPort: 9090-tcp
+    to:
+      kind: Service
+      name: prometheus
+      weight: 100
+    wildcardPolicy: None

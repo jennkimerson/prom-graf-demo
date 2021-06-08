@@ -1,0 +1,50 @@
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: grafana
+      app.kubernetes.io/component: grafana
+      app.kubernetes.io/instance: grafana
+      app.kubernetes.io/part-of: ceph-build-metrics
+      app.openshift.io/runtime-version: latest
+    name: grafana
+    namespace: ceph-build-metrics
+  spec:
+    ports:
+    - name: 3000-tcp
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
+    selector:
+      app: grafana
+      deploymentconfig: grafana
+    sessionAffinity: None
+    type: ClusterIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: prometheus
+      app.kubernetes.io/component: prometheus
+      app.kubernetes.io/instance: prometheus
+      app.kubernetes.io/part-of: ceph-build-metrics
+      app.openshift.io/runtime-version: latest
+    name: prometheus
+    namespace: ceph-build-metrics
+  spec:
+    ports:
+    - name: 9090-tcp
+      port: 9090
+      protocol: TCP
+      targetPort: 9090
+    selector:
+      app: prometheus
+      deploymentconfig: prometheus
+    sessionAffinity: None
+    type: ClusterIP

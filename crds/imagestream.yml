@@ -1,0 +1,56 @@
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
+apiVersion: v1
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    labels:
+      app: grafana
+      app.kubernetes.io/component: grafana
+      app.kubernetes.io/instance: grafana
+      app.kubernetes.io/part-of: ceph-build-metrics
+    name: grafana
+    namespace: ceph-build-metrics
+    selfLink: /apis/image.openshift.io/v1/namespaces/ceph-build-metrics/imagestreams/grafana
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+        openshift.io/imported-from: mirror.gcr.io/grafana/grafana:latest
+      from:
+        kind: DockerImage
+        name: mirror.gcr.io/grafana/grafana:latest
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    labels:
+      app: prometheus
+      app.kubernetes.io/component: prometheus
+      app.kubernetes.io/instance: prometheus
+      app.kubernetes.io/part-of: ceph-build-metrics
+    name: prometheus
+    namespace: ceph-build-metrics
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+        openshift.io/imported-from: mirror.gcr.io/prom/prometheus:latest
+      from:
+        kind: DockerImage
+        name: mirror.gcr.io/prom/prometheus:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
