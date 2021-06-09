@@ -17,7 +17,7 @@ multi-document yaml file. Its output is intended to be used with commands like:
 
 def parse_args(args):
     parser = argparse.ArgumentParser()
-    parser.add_argument("path", type=pathlib.Path, nargs='?', default=".")
+    parser.add_argument("path", type=pathlib.Path, nargs='?', default="./crds")
     parser.add_argument("-p", "--pvcs", action='store_true', default=False)
     return parser.parse_args(args)
 
