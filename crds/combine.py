@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
+import argparse
 import os
+import pathlib
+import sys
 import yaml
 
 """
@@ -12,20 +15,28 @@ multi-document yaml file. Its output is intended to be used with commands like:
 """
 
 
-def main(dir_path):
-    crds = get_crds(dir_path)
+def parse_args(args):
+    parser = argparse.ArgumentParser()
+    parser.add_argument("path", type=pathlib.Path, nargs='?', default=".")
+    parser.add_argument("-p", "--pvcs", action='store_true', default=False)
+    return parser.parse_args(args)
+
+
+def main():
+    args = parse_args(sys.argv[1:])
+    crds = get_crds(args.path, pvcs=args.pvcs)
     print(yaml.safe_dump_all(crds))
 
 
 def write_crds(obj, path):
-    with open(path, 'w') as fobj:
+    with open(path, "w") as fobj:
         fobj.write(yaml.safe_dump_all(obj))
     return path
 
 
-def get_crds(dir_path):
+def get_crds(dir_path, pvcs):
     crds = []
-    for path in get_crd_paths(dir_path):
+    for path in get_crd_paths(dir_path, pvcs):
         try:
             crds.append(yaml.safe_load(open(path)))
         except yaml.composer.ComposerError:
@@ -36,13 +47,15 @@ def get_crds(dir_path):
     return crds
 
 
-def get_crd_paths(dir_path=os.path.curdir):
-    crd_paths = filter(
-        lambda path: path.endswith(('.yaml', '.yml')),
+def get_crd_paths(dir_path, pvcs):
+    crd_paths = list(filter(
+        lambda path: path.endswith((".yaml", ".yml")),
         os.listdir(dir_path),
-    )
+    ))
+    if not pvcs:
+        crd_paths.remove('pvc.yml')
     return map(lambda path: os.path.join(dir_path, path), crd_paths)
 
 
 if __name__ == "__main__":
-    main(os.path.curdir)
+    main()
