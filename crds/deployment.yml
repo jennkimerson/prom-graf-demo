@@ -36,7 +36,7 @@ items:
         - envFrom:
           - configMapRef:
               name: grafana
-          image: mirror.gcr.io/grafana/grafana@sha256:c1134ea4c5a6bac38ddc246bd07eb1ff35680ea6cdda63a7bc30773e2f2a6085
+          image: mirror.gcr.io/grafana/grafana:latest
           imagePullPolicy: Always
           name: grafana
           ports:
@@ -54,7 +54,7 @@ items:
           - sh
           - -c
           - test -f /data/grafana.ini || cp -v /etc/grafana/grafana.ini /data/
-          image: mirror.gcr.io/grafana/grafana@sha256:c1134ea4c5a6bac38ddc246bd07eb1ff35680ea6cdda63a7bc30773e2f2a6085
+          image: mirror.gcr.io/grafana/grafana:latest
           imagePullPolicy: Always
           name: volume-init
           resources: {}
@@ -104,7 +104,7 @@ items:
           deploymentconfig: prometheus
       spec:
         containers:
-        - image: mirror.gcr.io/prom/prometheus@sha256:ca9e612ba1b6382ccf3642e21c9ee328ed4baa49fe84600ead7b7790c139aab4
+        - image: mirror.gcr.io/prom/prometheus:latest
           imagePullPolicy: Always
           name: prometheus
           ports:
@@ -122,7 +122,7 @@ items:
           - sh
           - -c
           - test -f /prometheus/prometheus.yml || cp -v /etc/prometheus/prometheus.yml /prometheus/
-          image: mirror.gcr.io/prom/prometheus@sha256:ca9e612ba1b6382ccf3642e21c9ee328ed4baa49fe84600ead7b7790c139aab4
+          image: mirror.gcr.io/prom/prometheus:latest
           imagePullPolicy: Always
           name: volume-init
           resources: {}
