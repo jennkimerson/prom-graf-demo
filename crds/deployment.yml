@@ -5,7 +5,6 @@ items:
   metadata:
     annotations:
       alpha.image.policy.openshift.io/resolve-names: '*'
-      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"grafana:latest","namespace":"ceph-build-metrics"},"fieldPath":"spec.template.spec.containers[?(@.name==\"grafana\")].image","pause":"false"}]'
     labels:
       app: grafana
       app.kubernetes.io/component: grafana
@@ -76,7 +75,6 @@ items:
   metadata:
     annotations:
       alpha.image.policy.openshift.io/resolve-names: '*'
-      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"prometheus:latest","namespace":"ceph-build-metrics"},"fieldPath":"spec.template.spec.containers[?(@.name==\"prometheus\")].image","pause":"false"}]'
     labels:
       app: prometheus
       app.kubernetes.io/component: prometheus
