@@ -8,12 +8,12 @@ items:
       app: grafana
       app.kubernetes.io/component: grafana
       app.kubernetes.io/instance: grafana
-      app.kubernetes.io/part-of: ceph-build-metrics
+      app.kubernetes.io/part-of: jenkim-dev
       app.openshift.io/runtime-version: latest
     name: grafana
-    namespace: ceph-build-metrics
+    namespace: jenkim-dev
   spec:
-    host: grafana-ceph-build-metrics.apps.ocp4.prod.psi.redhat.com
+    host: grafana-jenkim-dev.apps.ocp4.prod.psi.redhat.com
     port:
       targetPort: 3000-tcp
     to:
@@ -28,12 +28,12 @@ items:
       app: prometheus
       app.kubernetes.io/component: prometheus
       app.kubernetes.io/instance: prometheus
-      app.kubernetes.io/part-of: ceph-build-metrics
+      app.kubernetes.io/part-of: jenkim-dev
       app.openshift.io/runtime-version: latest
     name: prometheus
-    namespace: ceph-build-metrics
+    namespace: jenkim-dev
   spec:
-    host: prometheus-ceph-build-metrics.apps.ocp4.prod.psi.redhat.com
+    host: prometheus-jenkim-dev.apps.ocp4.prod.psi.redhat.com
     port:
       targetPort: 9090-tcp
     to:

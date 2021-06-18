@@ -9,7 +9,7 @@ items:
     finalizers:
     - kubernetes.io/pvc-protection
     name: grafana
-    namespace: ceph-build-metrics
+    namespace: jenkim-dev
   spec:
     accessModes:
     - ReadWriteMany
@@ -31,7 +31,7 @@ items:
     finalizers:
     - kubernetes.io/pvc-protection
     name: prometheus
-    namespace: ceph-build-metrics
+    namespace: jenkim-dev
   spec:
     accessModes:
     - ReadWriteMany

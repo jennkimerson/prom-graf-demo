@@ -10,10 +10,10 @@ items:
       app: grafana
       app.kubernetes.io/component: grafana
       app.kubernetes.io/instance: grafana
-      app.kubernetes.io/part-of: ceph-build-metrics
-      app.openshift.io/runtime-namespace: ceph-build-metrics
+      app.kubernetes.io/part-of: jenkim-dev
+      app.openshift.io/runtime-namespace: jenkim-dev
     name: grafana
-    namespace: ceph-build-metrics
+    namespace: jenkim-dev
   spec:
     progressDeadlineSeconds: 600
     replicas: 1
@@ -80,10 +80,10 @@ items:
       app: prometheus
       app.kubernetes.io/component: prometheus
       app.kubernetes.io/instance: prometheus
-      app.kubernetes.io/part-of: ceph-build-metrics
-      app.openshift.io/runtime-namespace: ceph-build-metrics
+      app.kubernetes.io/part-of: jenkim-dev
+      app.openshift.io/runtime-namespace: jenkim-dev
     name: prometheus
-    namespace: ceph-build-metrics
+    namespace: jenkim-dev
   spec:
     progressDeadlineSeconds: 600
     replicas: 1

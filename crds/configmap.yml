@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana
-  namespace: ceph-build-metrics
+  namespace: jenkim-dev
 data:
   GF_PATHS_CONFIG: /data/grafana.ini
   GF_PATHS_DATA: /data/
